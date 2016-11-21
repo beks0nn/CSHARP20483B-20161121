@@ -11,36 +11,57 @@ using System.Windows.Forms;
 
 namespace Lab2
 {
+    public class Animal
+    {
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public Animal(string name)
+        {
+            this.Id = Guid.NewGuid();
+            this.Name = name;
+        }
+    }
     public partial class Form1 : Form
     {
-        Dictionary<Guid, string> Animals;
+        //vårat repository
+        Dictionary<Guid, Animal> Animals;
         public Form1()
         {
             InitializeComponent();
-            this.listBoxAnimals.DisplayMember = "Name"; //visar Name
-            this.listBoxAnimals.ValueMember = "Id"; // value är Id
-            this.Animals = new Dictionary<Guid, string>();
-            this.Animals.Add(Guid.NewGuid(),"Zebra");
+            this.listBoxAnimals.DisplayMember = "Name"; //för att visa animal-Name i listbox
+            this.listBoxAnimals.ValueMember = "Id"; // value för listbox är Animal-Id
+            this.Animals = new Dictionary<Guid, Animal>();
+            var z = new Animal("Zebra");
+            this.Animals.Add(z.Id,z);
 
-            foreach (var animal in this.Animals)
+            foreach (var animal in this.Animals.Values)
             {
                 //bind både UI och Id, se ovan valuemember och displaymember
-                this.listBoxAnimals.Items.Add(new { Name = animal.Value, Id = animal.Key });
+                this.listBoxAnimals.Items.Add(animal);
             }
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var a = new {Id = Guid.NewGuid(), Name=this.textBoxAdd.Text };
-            this.Animals.Add(a.Id, a.Name);
+            if (this.textBoxAdd.Text == string.Empty)
+            {
+                MessageBox.Show("You have to provide a name for the animal!", "Error");
+                return;
+            }
+            var a = new Animal(this.textBoxAdd.Text);
+            this.Animals.Add(a.Id, a);
             this.listBoxAnimals.Items.Add(a);
             this.textBoxAdd.Text = string.Empty;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonDel_Click(object sender, EventArgs e)
         {
-            dynamic selected = this.listBoxAnimals.SelectedItem;
-
+            Animal selected = (Animal)this.listBoxAnimals.SelectedItem;
+            if (selected == null)
+            {
+                MessageBox.Show("You have to select something to delete!", "Error");
+                return;
+            }
             if (this.Animals.ContainsKey(selected.Id))
             {
                 this.Animals.Remove(selected.Id);
