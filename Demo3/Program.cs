@@ -9,7 +9,7 @@ namespace Demo3
     public class Person
     {
         public int Age { get; protected set; }
-        public string Name { get; set; }
+        public string Name { get; set; } 
 
         public void SetAge(int age)
         {
