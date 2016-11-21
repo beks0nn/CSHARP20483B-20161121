@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace Lab2
 {
+    // objekt att visa i listbox... sparas i dictionary
     public class Animal
     {
         public Guid Id { get; set; }
@@ -28,19 +29,26 @@ namespace Lab2
         public Form1()
         {
             InitializeComponent();
+
             this.listBoxAnimals.DisplayMember = "Name"; //för att visa animal-Name i listbox
             this.listBoxAnimals.ValueMember = "Id"; // value för listbox är Animal-Id
             this.Animals = new Dictionary<Guid, Animal>();
+            //starta med en zebra
             var z = new Animal("Zebra");
             this.Animals.Add(z.Id,z);
 
+            //lägg till djuren i listbox
             foreach (var animal in this.Animals.Values)
             {
-                //bind både UI och Id, se ovan valuemember och displaymember
                 this.listBoxAnimals.Items.Add(animal);
             }
         }
 
+        /// <summary>
+        /// Lägg till nytt djur
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             if (this.textBoxAdd.Text == string.Empty)
@@ -54,6 +62,11 @@ namespace Lab2
             this.textBoxAdd.Text = string.Empty;
         }
 
+        /// <summary>
+        /// ta bort valt djur
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonDel_Click(object sender, EventArgs e)
         {
             Animal selected = (Animal)this.listBoxAnimals.SelectedItem;
