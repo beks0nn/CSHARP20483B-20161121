@@ -62,7 +62,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interfaces", "Interfaces", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RepositoryPattern", "RepositoryPattern", "{4A559602-7628-4814-85C0-A2B689CEE4D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryPatternSample", "RepositoryPatternSample\RepositoryPatternSample.csproj", "{22A4B99E-544D-4322-B070-079D86719B93}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryPatternSample", "Dag3\RepositoryPatternSample\RepositoryPatternSample.csproj", "{22A4B99E-544D-4322-B070-079D86719B93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
