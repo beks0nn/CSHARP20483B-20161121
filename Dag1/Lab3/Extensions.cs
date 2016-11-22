@@ -22,7 +22,7 @@ namespace Lab3
 
     public static class SerializerExtensions
     {
-        public static void SaveToDisk<TK, T>(this Dictionary<TK, T> dict, string filename = null, string path = @"c:\io\")
+        public static void SaveToDisk<TK, T>(this Dictionary<TK, T> dict, string filename = null, string path = @"c:\io\") where T : Animal
         {
             path = getFilename<T>(filename, path);
             

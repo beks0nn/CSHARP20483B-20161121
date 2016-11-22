@@ -41,7 +41,7 @@ namespace Demo5
             var nums = from i in intList where i > 20 && i < 30 select i;
             foreach (var num in nums)
                 Console.WriteLine(num);
-
+            
             // deklarera innan uttrycket
             Func<int, bool> exp1 = delegate (int x) { return x > 20 && x < 30; };
             Func<int, bool> exp2 = x => x > 20 && x < 30;

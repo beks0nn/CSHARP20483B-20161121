@@ -43,7 +43,7 @@ namespace Demo8
 
             //Use extensions instead of memorystream
             animalDb.WriteToDisk();
-
+            animalDb.Clear();
             animalDb = animalDb.ReadFromDisk();
             Console.ReadLine();
         }

@@ -10,9 +10,9 @@ namespace Demo8
 {
     public static class SerializerExtensions
     {
-        public static void WriteToDisk<TK,T>(this Dictionary<TK,T> dict,  string filename = null, string path = @"c:\io\")
+        public static void WriteToDisk<TKey, TEntity>(this Dictionary<TKey, TEntity> dict, string filename = null, string path = @"c:\io\")
         {
-            path = getFilename<T>(filename, path);
+            path = getFilename<TEntity>(filename, path);
             using (var ms = new FileStream(path, FileMode.Create))
             {
                 //write binary
@@ -20,6 +20,7 @@ namespace Demo8
                 formatter.Serialize(ms, dict);
             }
         }
+
         public static Dictionary<TK,T> ReadFromDisk<TK,T>(this Dictionary<TK, T> dict,  string filename = null, string path =  @"c:\io\")
         {
             path = getFilename<T>(filename, path);
