@@ -141,7 +141,7 @@ Bygger en enkelt WinForms Application för att lägga till och ta bort entiteter f
 
 #LINQ-queries & Lambda-expressions
 Kikar på extensionmetoder som Sum(), Average(), Where() och att dessa fungerar på allt som är IEnumerable. Se signaturen för extensionsmetoderna.
-Ex Sum()
+Ex Average() nedan.
     
 	public static double Average(this IEnumerable<int> source);
 
