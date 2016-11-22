@@ -40,6 +40,13 @@ namespace Demo6
             p.Name = s;
         }
 
+        /// <summary>
+        /// Generisk extension
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TK"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="v"></param>
         public static void ListExtension<T, TK>(this IEnumerable<T> list, TK v)
         {
         }

@@ -48,6 +48,10 @@ namespace Lab3
         }
         private static string getFilename<T>(string filename, string path)
         {
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
             if (filename == null)
                 path = path + typeof(T).Name.ToLower() + ".bin";
             else

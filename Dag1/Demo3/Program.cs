@@ -47,7 +47,7 @@ namespace Demo3
             p.SetAge(34);
             Console.WriteLine(p.ToString());
             Console.WriteLine(p.Says());
-            p.
+            
             var c = new Customer();
             Console.WriteLine(c.Says());
             Console.ReadLine();

@@ -43,9 +43,10 @@ namespace Demo5
                 Console.WriteLine(num);
 
             // deklarera innan uttrycket
-            Func<int, bool> exp = x => x > 20 && x < 30;
+            Func<int, bool> exp1 = delegate (int x) { return x > 20 && x < 30; };
+            Func<int, bool> exp2 = x => x > 20 && x < 30;
             // exempel 1 lambda - hitta average in range
-            Console.WriteLine(intList.Where(exp).Average());
+            Console.WriteLine(intList.Where(exp2).Average());
 
             foreach (var p in personList.Where(p => p.Name.StartsWith("f") && p.Age > 2))
                 Console.WriteLine(p.Age + ", " + p.Name);            

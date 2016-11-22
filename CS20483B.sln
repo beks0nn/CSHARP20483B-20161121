@@ -35,7 +35,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab3", "Dag1\Lab3\Lab3.cspr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dag1", "Dag1", "{749DE541-6C59-4F50-8265-40598323630D}"
 	ProjectSection(SolutionItems) = preProject
-		Summering.md = Summering.md
+		Dag1\Summering.md = Dag1\Summering.md
 	EndProjectSection
 EndProject
 Global

@@ -42,7 +42,7 @@ namespace Demo8
             //}
 
             //Use extensions instead of memorystream
-            animalDb.SaveToDisk();
+            animalDb.WriteToDisk();
 
             animalDb = animalDb.ReadFromDisk();
             Console.ReadLine();

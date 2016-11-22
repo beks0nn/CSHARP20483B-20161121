@@ -32,6 +32,8 @@ namespace Demo4
                 Console.WriteLine(i);
             }
             #endregion
+
+            // dictionary - vi visar att allt är samma referens... Ändrar vi namn så ändras alla "instanser"
             var dict = new Dictionary<Guid, Person>();
             //var cd = new ConcurrentDictionary<int, int>()
             var p1 = new Person("Uffe");
@@ -44,8 +46,6 @@ namespace Demo4
                 Console.WriteLine(p1.Name);
                 Console.WriteLine(dict[p1.Id].Name);
             }
-
-
 
             Console.WriteLine(dict[p1.Id].Name);
             Console.ReadLine();

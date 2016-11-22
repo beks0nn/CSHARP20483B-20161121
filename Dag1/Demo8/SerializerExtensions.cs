@@ -10,7 +10,7 @@ namespace Demo8
 {
     public static class SerializerExtensions
     {
-        public static void SaveToDisk<TK,T>(this Dictionary<TK,T> dict,  string filename = null, string path = @"c:\io\")
+        public static void WriteToDisk<TK,T>(this Dictionary<TK,T> dict,  string filename = null, string path = @"c:\io\")
         {
             path = getFilename<T>(filename, path);
             using (var ms = new FileStream(path, FileMode.Create))
@@ -27,8 +27,7 @@ namespace Demo8
             {
                 //read binary
                 var formatter = new BinaryFormatter();
-                var animalDb = (Dictionary<TK, T>)formatter.Deserialize(ms);                
-                return animalDb;
+                return (Dictionary<TK, T>)formatter.Deserialize(ms);                                
             }
         }
         private static string getFilename<T>(string filename, string path)
