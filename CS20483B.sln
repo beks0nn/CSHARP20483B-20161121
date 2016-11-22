@@ -38,6 +38,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dag1", "Dag1", "{749DE541-6
 		Dag1\Summering.md = Dag1\Summering.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dag2", "Dag2", "{69B22A97-9D98-437B-A74E-EA8356098C0A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dag3", "Dag3", "{299CFB1D-9740-4EF1-A59F-C1BF79C28A31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

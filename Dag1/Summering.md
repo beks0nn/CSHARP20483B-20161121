@@ -5,24 +5,128 @@ Vi använder enklast möjliga sätt (Console Application) för att skriva grundlägga
 ##Abstract
 En abstrakt klass kan man inte skapa instanser av, men däremot ärva den och skapa instanser av implementationen
 
+	// måste ärvas för att kunna skapa instans (abstrakt)
+    public abstract class Animal
+    {
+        public bool Carnivore { get; set; }
+
+        public Animal()
+        {
+            Console.WriteLine("CTOR - Animal");
+        }
+    }    
+
 ##Sealed
 Sealed kan inte ärvas, det är den slutgiltiga implementationen av en klass (eller metod).
+
+	// Sealed klass - får inte ärva pga sealed
+    public sealed class Cat : Animal
+    {
+        public Cat()
+            : base()
+        {
+            Console.WriteLine("CTOR - Cat");
+        }
+    }
+
+	// Sealed method
+	public class Person
+    {
+        //tostring is virtual on object, so we can override and we also make the method sealed
+        public sealed override string ToString()
+        {
+            return string.Format("name: {0}, age: {1}", this.Name, this.Age);
+        }
+	}
 
 ##Virtual -> Override
 Virtual members kan man köra override på för att implementera custom logic/funktionalitet. 
 Kan också göra sealed override så att man inte kan köra override i eventuella vidare arv
 
+	public class Person
+    {       
+        //kan köra override i ärvande klasser
+        public virtual string Says()
+        {
+            return "Hello";
+        }
+    }
+    public class Customer : Person
+    {
+        public override string Says() // lägg till sealed override för final implementation 
+        {
+            return "To expensive";
+        }
+    }
+
+
 ##Protected
 Kan endast komma åt dessa via instansen samt de klasser som ärver instansen
+
+	public class Person
+    {
+        public int Age { get; protected set; }
+        public string Name { get; set; } 
+
+		// Sätter Age via metod, kan inte skriva direkt till property pga protected
+        public void SetAge(int age)
+        {
+            this.Age = age;
+        }
+	}
 
 ##Private
 Endast inom klassen
 
 ##Internal
 Endast inom assemblyn!
+
+	// gömd utanför assemblyn
+    internal class Lion : Animal
+    {
+
+    }
 	
 ##Ctor Överlagring
 Flera olika sätt att skapa objekt samt default parametrar
+
+    public abstract class Vehicle
+    {
+        public string RegNr { get; protected set; }
+        public string Type { get; protected set; }
+        public virtual string DisplayInfo()
+        {
+            return "No info available, override the method";
+        }
+        public Vehicle(){}
+
+        public Vehicle(string regnr, string type="unknown")
+        {
+            this.RegNr = regnr;
+            this.Type = type;
+        }
+    }
+    public class Car : Vehicle
+    {
+        public int Tires { get; set; }
+        public Car(string regnr, int tires):base(regnr)
+        {
+            this.Tires = tires;
+        }
+        public override string DisplayInfo()
+        {
+            return string.Format("My car has regnr {0} and {1} tires",this.RegNr, this.Tires);
+        }
+    }
+
+    public class Plane : Vehicle
+    {
+        public Plane(string regnr)
+            : base(regnr, "PLANE")
+        {
+
+        }       
+    }
 
 ##Ctor base
 Vid arv anropas basklassens konstruktor först				
@@ -61,7 +165,6 @@ Lite förvirring kring "=>", och många tycker att queries känns enklare, men man 
 eller
 
 	var result = intList.Where(delegate (int x) { return x > 20 && x < 30; });
-
 
 ### Linq-query
 Den mer SQL-liknande syntaxten kändes bekvämare för många, personligen föredrar jag lambda.

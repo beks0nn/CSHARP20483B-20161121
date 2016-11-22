@@ -18,12 +18,12 @@ namespace Demo2
     }
 
     // får inte ärva pga sealed
-    public sealed class CatAnimal : Animal
+    public sealed class Cat : Animal
     {
-        public CatAnimal()
+        public Cat()
             : base()
         {
-            Console.WriteLine("CTOR - CatAnimal");
+            Console.WriteLine("CTOR - Cat");
         }
         //public new bool Carnivore { get; set; }
     }

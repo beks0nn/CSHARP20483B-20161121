@@ -15,7 +15,7 @@ namespace Lab1
             return "No info available, override the method";
         }
         public Vehicle(){}
-        //public Vehicle(string regnr):this(regnr,"unknown") { }
+
         public Vehicle(string regnr, string type="unknown")
         {
             this.RegNr = regnr;
@@ -41,11 +41,7 @@ namespace Lab1
             : base(regnr, "PLANE")
         {
 
-        }
-        //public override string DisplayInfo()
-        //{
-        //    return string.Format("My plane has regnr {0}", this.RegNr);
-        //}
+        }       
     }
 
     class Program
