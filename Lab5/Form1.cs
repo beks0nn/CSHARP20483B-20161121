@@ -43,7 +43,22 @@ namespace Lab5
 
         private void buttonPlaySong_Click(object sender, EventArgs e)
         {
-            Thread.Sleep(15000);
+            Task.Run(() =>
+            {
+                Thread.Sleep(5000);
+                if (InvokeRequired)
+                {
+                    // after we've done all the processing, 
+                    this.Invoke(new MethodInvoker(delegate
+                    {
+                        this.textBoxArtist.Text = "APAP333";
+                        // load the control with the appropriate data
+                    }));
+                    return;
+                }
+
+            });
+            this.textBoxArtist.Text = "APAPA";
         }
 
         private void buttonDeleteSong_Click(object sender, EventArgs e)
