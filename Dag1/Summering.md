@@ -185,6 +185,17 @@ Ofta är extensionmetoder generiska, syntaxten för detta kändes till en början ko
 
 men jag tror syntaxten kändes enklare när vi skrev den generiska binär-serialiseraren?
 
+## Generic Contraints
+Vid genomgången av dag1 kom en bra fråga om man inte kan ange vilka generiska typer som får anropa en generisk extensionmetod.
+Detta göra genom att lägga till generic constraints på den generiska metoden, klassen etc...
+Lista över tillåtna constraints finns här: https://msdn.microsoft.com/en-us/library/d5x73970.aspx
+
+Exemepel där vi tillåter endast klasser som implementerar IAnimal att anropa vår extension.
+
+	
+    static void SaveToDisk<TK, T>(this Dictionary<TK, T> dict) where T : class, IAnimal
+	
+
 #IO
 Vi kikar på olika sätt att skriva/läsa till filer.
 
