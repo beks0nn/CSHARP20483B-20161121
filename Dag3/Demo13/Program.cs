@@ -12,20 +12,24 @@ namespace Demo13
         static BlockingCollection<int> blockingCollection = new BlockingCollection<int>(10);
         static void Main(string[] args)
         {
-            Task.Run(async () => { 
-                for(var i = 0; i < 100; i++){
+            Task.Run(async () =>
+            {
+                for (var i = 0; i < 100; i++)
+                {
                     blockingCollection.Add(i);
                     Console.WriteLine("Produced: " + i);
                     await Task.Delay(500);
-                }            
+                }
             });
 
             Task.Run(async () => {
+                Console.WriteLine("Starting consumer");
                 foreach (var num in blockingCollection.GetConsumingEnumerable())
                 {
                     await Task.Delay(15000);
                     Console.WriteLine("Consumed: " + num);
-                }            
+                }
+                Console.WriteLine("Ending consumer");
             });
             
 
