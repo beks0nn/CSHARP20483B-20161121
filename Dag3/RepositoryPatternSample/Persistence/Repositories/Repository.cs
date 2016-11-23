@@ -42,6 +42,11 @@ namespace RepositoryPatternSample.Persistence.Repositories
         public void Remove(TEntity entity)
         {
             _entities.Remove(entity);
-        }       
+        }
+
+        public void Update(TEntity entity)
+        {
+            Context.Entry<TEntity>(entity).State = EntityState.Modified;        
+        }
     }
 }

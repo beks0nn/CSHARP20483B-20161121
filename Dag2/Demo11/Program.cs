@@ -11,18 +11,18 @@ namespace Demo11
         static void Main(string[] args)
         {
             //Olika sätt att starta en Task
-            StartingTasksExample().Wait();
+            //StartingTasksExample().Wait();
 
-            // Task.Delay med Token är det som stoppas loopen!!!
-            CancellationTokenExample().Wait();
+            //// Task.Delay med Token är det som stoppas loopen!!!
+            //CancellationTokenExample().Wait();
             
-            WaitAnyExample();
+            //WaitAnyExample();
 
             //Notera skillnaden mellan WaitAll och Wait individuellt
-            WaitAllVsWaitIndividualExample().Wait();
+            //WaitAllVsWaitIndividualExample().Wait();
 
             // Kör actions parallellt
-            
+
             ParallelExample(16);
             // Actual Cores
             ParallelExample(Environment.ProcessorCount / 2);
@@ -83,7 +83,6 @@ namespace Demo11
                 {
                     while (true)
                     {
-
                         Console.WriteLine(DateTime.Now);
                         //if (cts.IsCancellationRequested)
                         //    break;
@@ -126,7 +125,6 @@ namespace Demo11
             var t1 = Task.Run(async () => { await Task.Delay(1000); Console.WriteLine("t1 done"); });
             var t2 = Task.Run(async () => { await Task.Delay(2000); Console.WriteLine("t2 done"); });
             var t3 = Task.Run(async () => { await Task.Delay(3000); Console.WriteLine("t3 done"); });
-
 
             Task.WaitAll(t1, t2, t3);
             sw.Stop();

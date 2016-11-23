@@ -12,6 +12,8 @@
 
 	Add-Migration
 
+	Update-Database
+
 ## Blocking Collection (Producer/Consumer Pattern)
 
 ## Custom Attribute

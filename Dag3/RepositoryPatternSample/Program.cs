@@ -14,12 +14,25 @@ namespace RepositoryPatternSample
             using (var unitOfWork = new UnitOfWork(new ZooContext()))
             {
                 // Example1
-                var animals = unitOfWork.Animals.GetAll();
+                var animals = unitOfWork.Animals.GetMostDangerousAnimals(3);
                 foreach(var a in animals)
                 {
                     Console.WriteLine(a.Name + ", " + a.Age);
                 }
                 Console.ReadLine();
+
+
+
+
+                animals = unitOfWork.Animals.GetAll();
+                foreach (var a in animals)
+                {
+                    Console.WriteLine(a.Name + ", " + a.Age);
+                }
+                Console.ReadLine();
+
+                //unitOfWork.Animals.
+
                 // Example2
 //                var animals = unitOfWork.Animals;
 
