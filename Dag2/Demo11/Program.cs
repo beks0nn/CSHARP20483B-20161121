@@ -22,23 +22,43 @@ namespace Demo11
             WaitAllVsWaitIndividualExample().Wait();
 
             // Kör actions parallellt
-            ParallelExample();
+            
+            ParallelExample(16);
+            // Actual Cores
+            ParallelExample(Environment.ProcessorCount / 2);
+            // Sekventiellt
+            ParallelExample(1);
+            // Obegränsat!
+            ParallelExample(-1);
 
             Console.WriteLine("Completed...");
             Console.ReadLine();
         }
 
-        public static void ParallelExample()
+        public static void ParallelExample(int parallel)
         {
-            Console.WriteLine("***ParallelExample***");
-            var myTasks = new List<Action>(Environment.ProcessorCount);
-            for(var i = 0; i < Environment.ProcessorCount; i++)
+            Console.WriteLine("***ParallelExample With Parallel "+parallel+"***");
+            var myTasks = new List<Action>(1000);
+            for(var i = 0; i < 1000; i++)
             {
                 var s = "Task " + i;
-                myTasks.Add(() => { Console.WriteLine(s); });
-            }
+                myTasks.Add(() => 
+                {
+                    var sw = Stopwatch.StartNew();
 
+                    var r = 0;
+                    for (var x = 0; x < 1000000; x++)
+                    {
+                        r += x;
+                    }
+                    sw.Stop();
+                    //Console.WriteLine("Task " + s + " with parallell " + parallel + " took " + sw.Elapsed.TotalMilliseconds);
+                });
+            }
+            var swTot = Stopwatch.StartNew();
+            var options = new ParallelOptions { MaxDegreeOfParallelism = parallel };
             Parallel.Invoke(myTasks.ToArray());
+            Console.WriteLine("All tasks with parallell " + parallel + " took " + swTot.Elapsed.TotalMilliseconds);
         }
 
         public static async Task StartingTasksExample()
@@ -65,6 +85,8 @@ namespace Demo11
                     {
 
                         Console.WriteLine(DateTime.Now);
+                        //if (cts.IsCancellationRequested)
+                        //    break;
                         await Task.Delay(1000, cts.Token);
                     }
                 }

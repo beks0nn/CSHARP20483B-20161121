@@ -1,8 +1,9 @@
+# Dag 1
 
-# ARV (Polymorfism)
+## ARV (Polymorfism)
 Vi använder enklast möjliga sätt (Console Application) för att skriva grundläggande CS för polymorfism
 
-##Abstract
+###Abstract
 En abstrakt klass kan man inte skapa instanser av, men däremot ärva den och skapa instanser av implementationen
 
 	// måste ärvas för att kunna skapa instans (abstrakt)
@@ -16,7 +17,7 @@ En abstrakt klass kan man inte skapa instanser av, men däremot ärva den och skap
         }
     }    
 
-##Sealed
+###Sealed
 Sealed kan inte ärvas, det är den slutgiltiga implementationen av en klass (eller metod).
 
 	// Sealed klass - får inte ärva pga sealed
@@ -39,7 +40,7 @@ Sealed kan inte ärvas, det är den slutgiltiga implementationen av en klass (elle
         }
 	}
 
-##Virtual -> Override
+###Virtual -> Override
 Virtual members kan man köra override på för att implementera custom logic/funktionalitet. 
 Kan också göra sealed override så att man inte kan köra override i eventuella vidare arv
 
@@ -60,7 +61,7 @@ Kan också göra sealed override så att man inte kan köra override i eventuella vi
     }
 
 
-##Protected
+###Protected
 Kan endast komma åt dessa via instansen samt de klasser som ärver instansen
 
 	public class Person
@@ -75,10 +76,10 @@ Kan endast komma åt dessa via instansen samt de klasser som ärver instansen
         }
 	}
 
-##Private
+###Private
 Endast inom klassen
 
-##Internal
+###Internal
 Endast inom assemblyn!
 
 	// gömd utanför assemblyn
@@ -87,7 +88,7 @@ Endast inom assemblyn!
 
     }
 	
-##Ctor Överlagring
+###Ctor Överlagring
 Flera olika sätt att skapa objekt samt default parametrar
 
     public abstract class Vehicle
@@ -128,27 +129,27 @@ Flera olika sätt att skapa objekt samt default parametrar
         }       
     }
 
-##Ctor base
+###Ctor base
 Vid arv anropas basklassens konstruktor först				
 
-##Object
+###Object
 Allt ärver object och då object har ett par virtual method så kan man köra override på dessa i alla typer  .NET
 Se ToString(), Equals(), GetHashCode()
 
-#Collections / IEnumerable
+##Collections / IEnumerable
 Kollar på generiska listor och dictionaries
 Bygger en enkelt WinForms Application för att lägga till och ta bort entiteter från en lista.
 
-#LINQ-queries & Lambda-expressions
+##LINQ-queries & Lambda-expressions
 Kikar på extensionmetoder som Sum(), Average(), Where() och att dessa fungerar på allt som är IEnumerable. Se signaturen för extensionsmetoderna.
 Ex Average() nedan.
     
 	public static double Average(this IEnumerable<int> source);
 
-## LINQ vs Lambda
+### LINQ vs Lambda
 Vi kikade på oliak sätt att göra samma sak på en lista av integers
 
-### Lambda-expression
+#### Lambda-expression
     
     Func<int, bool> exp2 = x => x > 20 && x < 30;
     var result = intList.Where(exp2);
@@ -166,12 +167,12 @@ eller
 
 	var result = intList.Where(delegate (int x) { return x > 20 && x < 30; });
 
-### Linq-query
+#### Linq-query
 Den mer SQL-liknande syntaxten kändes bekvämare för många, personligen föredrar jag lambda.
 	
 	var result = from i in intList where i > 20 && i < 30 select i;
 
-# ExtensionMethods
+## ExtensionMethods
 En första titt på extensionmetoder. Dvs statiska klasser och metoder som har nyckelordet 'this' innan första parametern.
 Extensions är bra om man vill addera funktionalitet till klasser man inte har access till, men jag använder generiska extensions oavsett då de ger funktionalitet som är bra att ha oavsett om du har access till klassen eller inte.
 
@@ -185,7 +186,7 @@ Ofta är extensionmetoder generiska, syntaxten för detta kändes till en början ko
 
 men jag tror syntaxten kändes enklare när vi skrev den generiska binär-serialiseraren?
 
-## Generic Contraints
+### Generic Contraints
 Vid genomgången av dag1 kom en bra fråga om man inte kan ange vilka generiska typer som får anropa en generisk extensionmetod.
 Detta göra genom att lägga till generic constraints på den generiska metoden, klassen etc...
 Lista över tillåtna constraints finns här: https://msdn.microsoft.com/en-us/library/d5x73970.aspx
@@ -196,20 +197,20 @@ Exemepel där vi tillåter endast klasser som implementerar IAnimal att anropa vår
     static void SaveToDisk<TK, T>(this Dictionary<TK, T> dict) where T : class, IAnimal
 	
 
-#IO
+##IO
 Vi kikar på olika sätt att skriva/läsa till filer.
 
 FileStream - För binär data
 StreamWriter, FileStream samt de statiska metoderna på File-klassen (ReadAllText/Bytes WriteAlltext/Bytes) för enklare operationer.
 
-#Serialization
+##Serialization
 Vi kikar på binär serialisering av objekt. I detta fall ett Dictionary<Guid,Animal> där vi vill serialisera och deserialisera vårt dictionary för att kunna läsa/skriva listan till disk via fil.
 Notera att objektet (Animal) måste ha attributet [Serializable] för att detta ska fungera.
 
 För att serialisera använde vi BinaryFormatter som tar en ström att skriva till vid serialiser och att läsa från vid deserialisering.
 Vi började med MemoryStream för att se hur det fungerar, för att sedan använda FileStream för att serialisera till disk.
 
-#Generic Binary Serilizer
+##Generic Binary Serilizer
 Vi refaktorerade koden till en generiska extension-metoder (WriteToDisk och ReadFromDisk) som kan anändas på alla Dictionary<T,TK>.
 	
 	static void WriteToDisk<TK,T>(this Dictionary<TK,T> dict,  string filename = null, string path = @"c:\io\")
