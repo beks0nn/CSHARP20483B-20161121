@@ -19,28 +19,7 @@ namespace RepositoryPatternSample
                 {
                     Console.WriteLine(a.Name + ", " + a.Age);
                 }
-                Console.ReadLine();
-
-
-
-
-                animals = unitOfWork.Animals.GetAll();
-                foreach (var a in animals)
-                {
-                    Console.WriteLine(a.Name + ", " + a.Age);
-                }
-                Console.ReadLine();
-
-                //unitOfWork.Animals.
-
-                // Example2
-//                var animals = unitOfWork.Animals;
-
-                //// Example3
-                //var author = unitOfWork.Animals.GetAuthorWithCourses(1);
-                //unitOfWork.Courses.RemoveRange(author.Courses);
-                //unitOfWork.Authors.Remove(author);
-                //unitOfWork.Complete();
+                Console.ReadLine();                
             }
         }
     }

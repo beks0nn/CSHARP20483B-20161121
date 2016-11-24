@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 
 namespace Lab6
 {
+    /// <summary>
+    /// Genom att wrappa en blockingcollection kan vi nyttja producer/consumer 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public static class MyBlockingCollection<T>
     {
-        // TODO: declare blocking collection av typen T
         private static BlockingCollection<T> _blockingCollection;
 
         static MyBlockingCollection()
@@ -41,10 +44,18 @@ namespace Lab6
     {
         static void Main(string[] args)
         {
+            //Statiska generiska klasser kommer att få nya instanser vid första användandet av en ny signatur MyBlockingCollection<T>
 
+            //Här skapas en instans av den statiska klassen eftersom signaturen med <int> används första gången.
             MyBlockingCollection<int>.Push(123);
+            //Här återanvänds den statiska instansen skapad ovan eftersom <int> redan använts.
+            MyBlockingCollection<int>.Push(456);
+
+            //Här skapas en instans av den statiska klassen eftersom signaturen med <string> används första gången.
             MyBlockingCollection<string>.Push("ABC");
-            
+            //Här återanvänds den statiska instansen skapad ovan eftersom <string> redan använts.
+            MyBlockingCollection<string>.Push("DEF");
+
             Console.ReadLine();
         }
     }
