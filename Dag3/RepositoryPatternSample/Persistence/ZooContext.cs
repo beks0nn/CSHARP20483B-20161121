@@ -12,6 +12,9 @@ namespace RepositoryPatternSample.Persistence
             this.Configuration.LazyLoadingEnabled = false;            
         }
 
+        /// <summary>
+        /// Register our entities as DbSet, in this case just animals...
+        /// </summary>
         public virtual DbSet<Animal> Animals{ get; set; }
         
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

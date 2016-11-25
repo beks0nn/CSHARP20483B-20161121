@@ -1,9 +1,6 @@
 namespace RepositoryPatternSample.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<RepositoryPatternSample.Persistence.ZooContext>
     {
@@ -15,18 +12,7 @@ namespace RepositoryPatternSample.Migrations
         protected override void Seed(RepositoryPatternSample.Persistence.ZooContext context)
         {
             //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
-            context.Animals.AddOrUpdate(p => p.Id,
+            context.Animals.AddOrUpdate(p => p.Name,
                 new Core.DomainModel.Animal { Name = "Tiger", Age = 23, DangerScale = 10, Dangerous = true },
                 new Core.DomainModel.Animal { Name = "Elephant", Age = 90, DangerScale = 5, Dangerous = false },
                 new Core.DomainModel.Animal { Name = "Mouse", Age = 1, DangerScale = 0, Dangerous = false},

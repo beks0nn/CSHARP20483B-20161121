@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -19,6 +20,13 @@ namespace SemaphoreDemo
         static SemaphoreSlim semaphoreSlim = new SemaphoreSlim(2, 2);
         static void Main(string[] args)
         {
+
+#if DEBUG
+            Console.WriteLine("THIS CODE IS COMPILED & EXECUTED SINCE DEBUG IS DEFINED");
+#else
+            Console.WriteLine("THIS CODE IS COMPILED & EXECUTED SINCE DEBUG IS NOT DEFINED");
+#endif
+
             #region Sempahore Slim
             // Start 8 actions. All will start, but block so that only 2 (in this case) can access the semaphore area at the same time.
             var semaphoreslimTasks = new List<Task>();
@@ -44,14 +52,15 @@ namespace SemaphoreDemo
                 var s = i.ToString();
                 semaphoreTasks.Add(Task.Run(() => DoSemaphoreStuff(s)));
             }
-
             Task.WaitAll(semaphoreTasks.ToArray());
             Console.WriteLine("All semaphore tasks completed");
+
             #endregion
 
             Console.ReadLine();
         }
 
+        [Conditional("DEBUG")]
         public static void DoSemaphoreSlimStuff(string actionNr)
         {
             Console.WriteLine("Action nr {0} is waiting in semaphoreslim land for threadid {1}", actionNr,Thread.CurrentThread.ManagedThreadId);
@@ -62,6 +71,7 @@ namespace SemaphoreDemo
             semaphoreSlim.Release();
         }
 
+        [Conditional("DEBUG")]
         public static void DoSemaphoreStuff(string actionNr)
         {
             Console.WriteLine("Action nr {0} is waiting in semaphore land for threadid {1}", actionNr, Thread.CurrentThread.ManagedThreadId);
